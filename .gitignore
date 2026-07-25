@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.vscode/
+snapfind.db
+.env
+chroma_db/
+outputs/
+screenshots/
