@@ -182,6 +182,45 @@ def get_all_screenshot_objects():
 
     return screenshots
 
+def get_screenshot_object(filename):
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT filename, ocr_text
+        FROM screenshots
+        WHERE filename = ?
+    """, (filename,))
+
+    row = cursor.fetchone()
+
+    conn.close()
+
+    if row is None:
+        return None
+
+    filename, ocr_text = row
+
+    return {
+        "id": filename,
+        "filename": filename,
+        "filePath": filename,
+        "imageUrl": f"http://127.0.0.1:8000/image/{quote(filename)}",
+        "appSource": "Coming Soon",
+        "category": "Other",
+        "createdAt": "",
+        "dimensions": {
+            "width": 0,
+            "height": 0,
+        },
+        "fileSizeMB": 0,
+        "ocrText": ocr_text,
+        "ocrBlocks": [],
+        "tags": [],
+        "isFavorite": False,
+    }
+
 
 def screenshot_exists(filename):
 

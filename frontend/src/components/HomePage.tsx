@@ -59,30 +59,13 @@ export const HomePage: React.FC<HomePageProps> = ({
 
   try {
     const response = await search(filter.query);
-
+    console.log(response.results);
     const mappedResults: SearchResultItem[] = response.results.map((result: any) => ({
-      screenshot: {
-        id: result.filename,
-        filename: result.filename,
-        filePath: "",
-        imageUrl: `http://127.0.0.1:8000/screenshots/${result.filename}`,
-        appSource: "Unknown",
-        category: "Other",
-        createdAt: "",
-        dimensions: {
-          width: 0,
-          height: 0,
-        },
-        fileSizeMB: 0,
-        ocrText: result.ocr_text,
-        ocrBlocks: [],
-        tags: [],
-        isFavorite: false,
-      },
+      screenshot: result.screenshot,
 
       score: Math.round(result.rrf_score * 100),
 
-      matchedSnippet: result.ocr_text.substring(0, 120),
+      matchedSnippet: result.screenshot.ocrText.substring(0, 120),
 
       matchType: "Hybrid",
     }));
