@@ -44,3 +44,12 @@ def semantic_search(query, n_results=5):
         embedding,
         n_results
     )
+
+def clear_database():
+
+    db.client.delete_collection("snapfind")
+
+    db.collection = db.client.get_or_create_collection(
+        name="snapfind",
+        metadata={"hnsw:space": "cosine"}
+    )

@@ -1,0 +1,6 @@
+{
+  "name": "SnapFind",
+  "description": "Natural language and OCR screenshot search application using OpenCLIP embeddings and text extraction.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
